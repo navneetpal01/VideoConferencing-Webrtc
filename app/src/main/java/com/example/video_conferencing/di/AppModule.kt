@@ -16,12 +16,12 @@ import javax.inject.Singleton
 object AppModule {
 
     @Provides
-    @Singleton
     fun providesContext(@ApplicationContext context: Context): Context {
         return context
     }
 
-    //Means the same
+    //Means the same  -> no need of singleton for the application context as the context remains
+    // same entire application they are already single instance
 
 //    @Provides
 //    @Singleton
@@ -31,7 +31,6 @@ object AppModule {
 
 
     @Provides
-    @Singleton
     fun providesGson(): Gson {
         return Gson()
     }
