@@ -26,7 +26,10 @@ class SocketClient @Inject constructor(
     fun onStop() {
         socketEventListener = null
         //This method likely waits (blocks) until the connection is fully closed before continuing
-        runCatching { webSocket?.closeBlocking() }
+        //Even though you're not using the specific exception information, runCatching still captures
+        // any exceptions that might occur during the webSocket?.closeBlocking() call.
+        // This prevents the application from crashing due to unexpected errors related to closing the websocket connection
+        runCatching{ webSocket?.closeBlocking() }
     }
 
     private var webSocket: WebSocketClient? = null
